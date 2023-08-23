@@ -5,7 +5,7 @@
 ### Descargar Repositorio
 
 ```bash
-git clone git@github.com:jhon0210/enerbit
+git clone https://github.com/jhon0210/PruebaEnerbit
 ```
 
 ### Creacion y Activacion Ambiente Virtual
