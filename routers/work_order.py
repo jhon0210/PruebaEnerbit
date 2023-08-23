@@ -15,7 +15,7 @@ router = APIRouter(
 get_db = database.get_db
 
 
-@router.post('/', status_code = status.HTTP_201_CREATED)
+@router.post('/', status_code = status.HTTP_201_CREATED, response_model=schemas.ShowWorkOrder)
 def create(request: schemas.WorkOrder, is_active: bool, db: Session = Depends(get_db)):
     return work_order.create(request, is_active, db)
 

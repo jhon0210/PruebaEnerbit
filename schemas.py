@@ -42,13 +42,14 @@ class WorkOrderBase(BaseModel):
     planned_date_begin: datetime
     planned_date_end: datetime
     status: StatusEnum
+    created_at: datetime
 
     @validator('planned_date_end')
     def validate_time_difference(cls, planned_date_end, values, **kwargs):
         planned_date_begin = values.get('planned_date_begin')
         if planned_date_begin and planned_date_end:
             time_difference = planned_date_end - planned_date_begin
-            if time_difference < timedelta(hours=2):
+            if time_difference > timedelta(hours=2):
                 raise ValueError('End time should be at least 2 hours after start time')
         return planned_date_end
 
@@ -76,6 +77,7 @@ class ShowCustomer(CustomerBase):
     end_date: datetime | None
     is_active: bool
     created_at: datetime
+    work_orders: List[WorkOrder]
 
     class Config():
         from_attributes = True
